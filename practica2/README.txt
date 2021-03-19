@@ -1,4 +1,4 @@
-Para correr el archivo practica2_p2.py es necesario tener el archivo input en .txt y el archivo practica1.py 
+Para correr el archivo practica2_p2.py es necesario tener el archivo input en .txt y el archivo practica2.py 
 en el mismo directorio a la hora de ejecutarlo. Y se ejecuta de la siguiente forma:
 
 Windows:
