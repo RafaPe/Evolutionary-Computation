@@ -8,7 +8,7 @@ class Objeto:
         self.peso = p
         self.indice = i
 
-
+#Función para generar solución inicial aleatoria
 def generar_solucion_inicial(objetos, capacidad_mochila):
     solucion = [1 for _ in range(len(objetos))]
     capacidad_ocupada = sum([objeto.peso for objeto in objetos])
@@ -24,7 +24,8 @@ def generar_solucion_inicial(objetos, capacidad_mochila):
             break
 
     return solucion
-        
+
+#Función para evaluar el peso de los objetos de una solución
 def evaluar_peso(solucion, objetos, capacidad):
     peso = 0
     for item in zip(solucion, objetos):
@@ -32,6 +33,7 @@ def evaluar_peso(solucion, objetos, capacidad):
             peso += item[1].peso
     return peso
 
+#Función para evaluar el valor de los objetos de una solución
 def evaluar(solucion, objetos, capacidad):
     valor = 0
     for item in zip(solucion, objetos):
@@ -39,8 +41,7 @@ def evaluar(solucion, objetos, capacidad):
             valor += item[1].valor
     return valor
     
-
-
+#Función para generar el vecindario
 def generar_vecindario(solucion, objetos, capacidad_mochila):
     vecindario = []
     for i in range(len(solucion)):
@@ -58,7 +59,7 @@ def generar_vecindario(solucion, objetos, capacidad_mochila):
     return vecindario
         
             
-
+#Función de recocido simulado
 def recocido_simulado(objetos, capacidad_mochila, t_inicial, t_final):
     t = t_inicial
     solucion = generar_solucion_inicial(objetos, capacidad_mochila)
@@ -79,6 +80,7 @@ def recocido_simulado(objetos, capacidad_mochila, t_inicial, t_final):
 
 
 if __name__ == '__main__':
+    #Leemos input
     t_inicial, t_final = [float(a) for a in input().split()]
     n_objetos = int(input())
     capacidad = int(input())
@@ -87,13 +89,17 @@ if __name__ == '__main__':
         valor, peso = [int(a) for a in input().split()]
         mochila.append(Objeto(valor, peso, i))
 
+    #Hacemos recocido simulado
     solucion, valor = recocido_simulado(mochila, capacidad, t_inicial, t_final)
+
+    #Analizamos la solución para poder imprimirla en el formato pedido
     indexes, peso = [], 0
     for s in zip(solucion, mochila):
         if s[0] == 1:
             peso += s[1].peso
             indexes.append(s[1].indice)
 
+    #Imprimimos la solución
     print(indexes, ''.join([str(a) for a in solucion]))
     print(valor)
     print(peso)

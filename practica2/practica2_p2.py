@@ -72,7 +72,6 @@ if __name__ == '__main__':
 
 
     sols = []
-    # graph = make_graph(costos_cuidades)
     for i in range(m):
         solucion, valor = recocido_simulado(mochila, capacidad, t_inicial, t_final)
         peso = 0
